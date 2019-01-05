@@ -10,7 +10,7 @@ var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
 var computerChoice = letters[Math.floor(Math.random() * letters.length)];
 console.log(computerChoice);
 
-// record user's key entry and add guessed letter to Your guesses so far
+// compare user's entry against computer's choice and counts down Guesses Left and adds to Win or Loss as appropriate
 document.onkeypress = function(event) {
     var userGuess = event.key;
 
