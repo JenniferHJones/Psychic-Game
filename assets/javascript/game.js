@@ -2,6 +2,7 @@
 var win = 0;
 var loss = 0;
 var guessLeft = 9;
+var guesses = [];
 
 // define letters for computer
 var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
@@ -11,8 +12,9 @@ var computerChoice = letters[Math.floor(Math.random() * letters.length)];
 console.log(computerChoice);
 
 // compare user's entry against computer's choice and counts down Guesses Left and adds to Win or Loss as appropriate
-document.onkeypress = function(event) {
+document.onkeydown = function(event) {
     var userGuess = event.key;
+    guesses.push(userGuess);
 
     if(userGuess === computerChoice){
         win++;
@@ -24,10 +26,10 @@ document.onkeypress = function(event) {
         loss++
     }
 
-    document.getElementById('win').innerHTML = "Wins: " + win;
-    document.getElementById('loss').innerHTML = "Losses: " + loss;
-    document.getElementById('guessLeft').innerHTML = "Guesses left: " + guessLeft;
-
+    document.getElementById("win").innerHTML = "Wins: " + win;
+    document.getElementById("loss").innerHTML = "Losses: " + loss;
+    document.getElementById("guessLeft").innerHTML = "Guesses left: " + guessLeft;
+    document.getElementById("guesses").innerHTML = "Your guesses so far: " + guesses;
 }
 
 // compare user guess to computer selection x 9
