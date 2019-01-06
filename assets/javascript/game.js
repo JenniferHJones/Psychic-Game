@@ -17,7 +17,17 @@ document.onkeydown = function (event) {
     guesses.push(userGuess);
 
     // compares user's guess against computer's choice and adds 1 to win and resets guesses left and guesses 
-    if ((userGuess === computerSelect[0]) && (guessLeft > 0)) {
+    if (guesses.length === 9) {
+        loss++;
+        guessLeft = 9;
+        guesses.length = 0;
+        computerSelect.length = 0;
+        var computerChoice = letters[Math.floor(Math.random() * letters.length)];
+        computerSelect.push(computerChoice);
+        console.log(computerSelect[0]);
+    }
+    
+    else if ((userGuess === computerSelect[0]) && (guessLeft > 0)) {
         win++;
         guessLeft = 9;
         guesses.length = 0;
