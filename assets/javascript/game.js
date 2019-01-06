@@ -1,39 +1,42 @@
-// default values
+// variables with initial values
 var win = 0;
 var loss = 0;
 var guessLeft = 9;
 var guesses = [];
+var computerChoice = [];
 
-// define letters for computer
+// define array of possible computer choices
 var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
-// computer makes randam letter selection
+// computer makes random letter selection
 var computerChoice = letters[Math.floor(Math.random() * letters.length)];
-console.log(computerChoice);
+console.log(computerChoice[0]);
 
-// compare user's entry against computer's choice and counts down Guesses Left and adds to Win or Loss as appropriate
+// function to log user's guess 
 document.onkeydown = function(event) {
     var userGuess = event.key;
     guesses.push(userGuess);
 
-    if(userGuess === computerChoice){
+    // compares user's guess against computer's choice and adds 1 to win or subtracts 1 from guesses left
+    if (userGuess === computerChoice) {
         win++;
-    }else{
+        guessLeft = 9;
+        guesses.length = 0;
+        computerChoice.length = 0;
+    } else {
         guessLeft--;
     }
-
-    if(guessLeft === 0){
-        loss++
+    // adds 1 to loss once guesses left = 0
+    if (guessLeft === 0) {
+        loss++;
+        guessLeft = 9;
+        guesses.length = 0;
+        computerChoice.length = 0;
     }
 
+    // updates page with wins, losses, etc.
     document.getElementById("win").innerHTML = "Wins: " + win;
     document.getElementById("loss").innerHTML = "Losses: " + loss;
     document.getElementById("guessLeft").innerHTML = "Guesses left: " + guessLeft;
     document.getElementById("guesses").innerHTML = "Your guesses so far: " + guesses;
 }
-
-// compare user guess to computer selection x 9
-
-// decrement total guesses (9) by 1 for each key entry
-
-// add 1 to wins if user guesses computer's selection or add 1 to losses if user didn't guess correctly
