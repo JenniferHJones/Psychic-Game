@@ -1,37 +1,45 @@
-// variables with initial values
+// variables 
+var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 var win = 0;
 var loss = 0;
 var guessLeft = 9;
 var guesses = [];
-var computerChoice = [];
-
-// define array of possible computer choices
-var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var computerSelect = [];
 
 // computer makes random letter selection
 var computerChoice = letters[Math.floor(Math.random() * letters.length)];
-console.log(computerChoice[0]);
+computerSelect.push(computerChoice);
+console.log(computerSelect[0]);
 
 // function to log user's guess 
-document.onkeydown = function(event) {
+document.onkeydown = function (event) {
     var userGuess = event.key;
     guesses.push(userGuess);
 
-    // compares user's guess against computer's choice and adds 1 to win and resets guesses left and guesses or subtracts 1 from guesses left
-    if (userGuess === computerChoice) {
+    // compares user's guess against computer's choice and adds 1 to win and resets guesses left and guesses 
+    if ((userGuess === computerSelect[0]) && (guessLeft > 0)) {
         win++;
         guessLeft = 9;
         guesses.length = 0;
-        computerChoice.length = 0;
-    } else {
+        computerSelect.length = 0;
+        var computerChoice = letters[Math.floor(Math.random() * letters.length)];
+        computerSelect.push(computerChoice);
+        console.log(computerSelect[0]);
+    }
+    // or subtracts 1 from guesses left if user didn't guess correctly
+    else if ((userGuess !== computerSelect[0]) && (guessLeft > 0)) {
         guessLeft--;
     }
+   
     // adds 1 to loss once guesses left = 0 & resets guesses left and guesses
-    if (guessLeft === 0) {
+    else {
         loss++;
         guessLeft = 9;
         guesses.length = 0;
-        computerChoice.length = 0;
+        computerSelect.length = 0;
+        var computerChoice = letters[Math.floor(Math.random() * letters.length)];
+        computerSelect.push(computerChoice);
+        console.log(computerSelect[0]);
     }
 
     // updates page with wins, losses, etc.
