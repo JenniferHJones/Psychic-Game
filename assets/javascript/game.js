@@ -17,7 +17,7 @@ document.onkeydown = function(event) {
     var userGuess = event.key;
     guesses.push(userGuess);
 
-    // compares user's guess against computer's choice and adds 1 to win or subtracts 1 from guesses left
+    // compares user's guess against computer's choice and adds 1 to win and resets guesses left and guesses or subtracts 1 from guesses left
     if (userGuess === computerChoice) {
         win++;
         guessLeft = 9;
@@ -26,7 +26,7 @@ document.onkeydown = function(event) {
     } else {
         guessLeft--;
     }
-    // adds 1 to loss once guesses left = 0
+    // adds 1 to loss once guesses left = 0 & resets guesses left and guesses
     if (guessLeft === 0) {
         loss++;
         guessLeft = 9;
