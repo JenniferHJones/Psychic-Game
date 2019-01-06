@@ -31,7 +31,7 @@ document.onkeydown = function (event) {
         guessLeft--;
     }
    
-    // adds 1 to loss once guesses left = 0 & resets guesses left and guesses
+    // or adds 1 to loss if neither of the above is true & resets guesses left and guesses
     else {
         loss++;
         guessLeft = 9;
